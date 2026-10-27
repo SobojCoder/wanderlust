@@ -21,7 +21,7 @@ export function Cta() {
         <p className="mt-4 max-w-xl text-sm text-white/90 md:text-base">
           Join thousands of travelers who have discovered the world with us
         </p>
-        <Button className="mt-14 h-11 rounded-none bg-white px-8 text-sm font-medium tracking-widest text-black uppercase hover:bg-white/90">
+        <Button className="mt-14 h-11 gap-4 rounded-none bg-white px-8 text-sm font-medium tracking-widest text-black! uppercase hover:bg-white/90">
           Book Your Trip Today
           <ArrowRightIcon className="size-4" />
         </Button>
