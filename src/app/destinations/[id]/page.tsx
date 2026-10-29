@@ -14,6 +14,10 @@ import Image from "next/image";
 import EditDestinationDialog from "@/components/EditDestinationDialog";
 import DeleteDestinationDialog from "@/components/DeleteDestinationDialog";
 import BookingCard from "@/components/bookingCard/BookingCard";
+import { notFound } from "next/navigation";
+import { auth } from "@/lib/auth";
+import { headers } from "next/headers";
+import getTokenFromSever from "@/lib/getTokenFromSever";
 
 export interface Root {
   _id: string;
@@ -29,7 +33,15 @@ export interface Root {
 
 const DestinationDetailsPage = async ({ params }) => {
   const { id } = await params;
-  const res = await fetch(`http://localhost:5000/destination/${id}`);
+
+  const token = await getTokenFromSever()
+
+  const res = await fetch(`http://localhost:5000/destination/${id}`, {
+    headers: {
+      authorization: `Bearer ${token}`,
+    }
+  });
+  if(!res.ok) notFound();
   const destination = await res.json();
 
   console.log(destination);
