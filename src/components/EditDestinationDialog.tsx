@@ -41,7 +41,7 @@ const initialForm = {
 };
 
 
-const EditDestinationDialog = ({destination}) => {  const [form, setForm] = useState(destination);
+const EditDestinationDialog = ({ destination }: { destination: IDestinations }) => {  const [form, setForm] = useState(destination);
 
   const update = (field: keyof typeof form, value: string) =>
     setForm((current) => ({ ...current, [field]: value }));

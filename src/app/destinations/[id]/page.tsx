@@ -36,7 +36,6 @@ const DestinationDetailsPage = async ({
   if (!res.ok) notFound();
   const destination = await res.json();
 
-  console.log(destination);
   return (
     <main className="min-h-screen bg-slate-50 pb-16">
       <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
@@ -51,7 +50,7 @@ const DestinationDetailsPage = async ({
           </Link>
 
           {/* Top-right action buttons */}
-          <div className="flex items-center gap-2 sm:right-8 sm:top-8">
+          <div className="flex items-center gap-2">
             <EditDestinationDialog destination={destination} />
             <DeleteDestinationDialog id={id} />
           </div>
@@ -62,8 +61,10 @@ const DestinationDetailsPage = async ({
           <Image
             src={destination.imageUrl}
             alt={destination.name}
-            width={500}
-            height={700}
+            width={1280}
+            height={500}
+            priority
+            sizes="(max-width: 640px) 100vw, 1280px"
             className="h-full w-full object-cover"
           />
 
@@ -171,6 +172,48 @@ const DestinationDetailsPage = async ({
                     </p>
                   </div>
                 </div>
+              </div>
+            </section>
+
+            {/* Why book with us */}
+            <section className="rounded-3xl border border-slate-200 bg-white p-5 sm:p-8">
+              <h2 className="mb-6 text-2xl font-bold text-slate-900">
+                Why book with us
+              </h2>
+
+              <div className="grid grid-cols-1 gap-6 sm:grid-cols-3">
+                {[
+                  {
+                    icon: <Tag size={22} />,
+                    title: "Best price guarantee",
+                    description:
+                      "Book directly with no hidden fees — the price you see is the price you pay.",
+                  },
+                  {
+                    icon: <CalendarDays size={22} />,
+                    title: "Free cancellation",
+                    description:
+                      "Change of plans? Cancel up to 7 days before departure for a full refund.",
+                  },
+                  {
+                    icon: <Clock3 size={22} />,
+                    title: "24/7 travel support",
+                    description:
+                      "Our team is around the clock to help before, during, and after your trip.",
+                  },
+                ].map((item) => (
+                  <div key={item.title}>
+                    <div className="inline-flex rounded-xl bg-blue-50 p-3 text-blue-600">
+                      {item.icon}
+                    </div>
+                    <h3 className="mt-4 font-semibold text-slate-900">
+                      {item.title}
+                    </h3>
+                    <p className="mt-2 text-sm leading-6 text-slate-500">
+                      {item.description}
+                    </p>
+                  </div>
+                ))}
               </div>
             </section>
           </div>
