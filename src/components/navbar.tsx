@@ -1,7 +1,7 @@
 "use client";
 import { useState } from "react";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { LogOutIcon, UserIcon } from "lucide-react";
 import { cn } from "cn";
 import { authClient } from "@/lib/auth-client";
@@ -31,6 +31,7 @@ export function Navbar() {
   const { data: session } = authClient.useSession();
   const router = useRouter();
   const [open, setOpen] = useState(false);
+  const pathName = usePathname();
 
   const user = session?.user;
 
@@ -59,7 +60,7 @@ export function Navbar() {
               href={link.href}
               className={cn(
                 "text-sm text-foreground/80 transition-colors hover:text-[#0eb6d4]",
-                link.active &&
+                pathName === link.href &&
                   "font-medium text-[#0eb6d4] underline underline-offset-4",
               )}
             >
@@ -82,8 +83,9 @@ export function Navbar() {
                 aria-label="Open account menu"
                 className="rounded-full outline-none focus-visible:ring-2 focus-visible:ring-[#0eb6d4]/60"
                 render={
-                  <button type="button">
-                    <Avatar>
+                  <button className="flex gap-3 items-center cursor-pointer" type="button">
+                      <h2 className="font-semibold  text-sm text-foreground/80 transition-colors hover:text-[#0eb6d4]">{user?.name}</h2> 
+                    <Avatar className="size-10 ring-4 ring-emerald-100">
                       <AvatarImage
                         referrerPolicy="no-referrer"
                         src={user?.image as string}
