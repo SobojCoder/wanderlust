@@ -4,9 +4,10 @@ import Link from 'next/link';
 import { ArrowRight, CalendarDays, Clock3, MapPin, Users } from 'lucide-react';
 import Image from 'next/image';
 import { redirect } from 'next/navigation';
+import { IBooking } from '@/type/bookingType';
 
-const UserTravelBookingCard = ({booking}) => {
-
+const UserTravelBookingCard = ({booking}:{booking: IBooking}) => {
+console.log("booking list",booking);
     const handleCancleBooking = async() =>{
         const res = await fetch(`http://localhost:5000/my-booking/${booking._id}`, {
             method: 'DELETE'

@@ -1,22 +1,10 @@
 import Link from "next/link";
-import {
-  ArrowLeft,
-  ArrowUpRight,
-  MapPin,
-  CalendarDays,
-  Clock3,
-  Tag,
-  ShieldCheck,
-  CheckCircle2,
-  Trash2,
-} from "lucide-react";
+import { ArrowLeft, MapPin, CalendarDays, Clock3, Tag } from "lucide-react";
 import Image from "next/image";
 import EditDestinationDialog from "@/components/EditDestinationDialog";
 import DeleteDestinationDialog from "@/components/DeleteDestinationDialog";
 import BookingCard from "@/components/bookingCard/BookingCard";
 import { notFound } from "next/navigation";
-import { auth } from "@/lib/auth";
-import { headers } from "next/headers";
 import getTokenFromSever from "@/lib/getTokenFromSever";
 
 export interface Root {
@@ -31,17 +19,21 @@ export interface Root {
   description: string;
 }
 
-const DestinationDetailsPage = async ({ params }) => {
+const DestinationDetailsPage = async ({
+  params,
+}: {
+  params: Promise<{ id: string }>;
+}) => {
   const { id } = await params;
 
-  const token = await getTokenFromSever()
+  const token = await getTokenFromSever();
 
   const res = await fetch(`http://localhost:5000/destination/${id}`, {
     headers: {
       authorization: `Bearer ${token}`,
-    }
+    },
   });
-  if(!res.ok) notFound();
+  if (!res.ok) notFound();
   const destination = await res.json();
 
   console.log(destination);
@@ -50,29 +42,23 @@ const DestinationDetailsPage = async ({ params }) => {
       <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
         {/* Back button */}
         <div className="flex justify-between items-center my-3">
+          <Link
+            href="/destinations"
+            className="mb-6 inline-flex items-center gap-2 text-sm font-medium text-slate-600 transition hover:text-blue-600"
+          >
+            <ArrowLeft size={18} />
+            Back to destinations
+          </Link>
 
-        
-        <Link
-          href="/destinations"
-          className="mb-6 inline-flex items-center gap-2 text-sm font-medium text-slate-600 transition hover:text-blue-600"
-        >
-          <ArrowLeft size={18} />
-          Back to destinations
-        </Link>
-        
-{/* Top-right action buttons */}
-<div className="flex items-center gap-2 sm:right-8 sm:top-8">
- 
-  <EditDestinationDialog destination = {destination}/>
-  <DeleteDestinationDialog id={id} />
-
- 
-</div>
-</div>
-
+          {/* Top-right action buttons */}
+          <div className="flex items-center gap-2 sm:right-8 sm:top-8">
+            <EditDestinationDialog destination={destination} />
+            <DeleteDestinationDialog id={id} />
+          </div>
+        </div>
 
         {/* Hero image */}
-        <section className="relative h-[300px] overflow-hidden rounded-3xl sm:h-[420px] lg:h-[500px]">
+        <section className="relative h-75 overflow-hidden rounded-3xl sm:h-105 lg:h-125">
           <Image
             src={destination.imageUrl}
             alt={destination.name}
@@ -81,7 +67,7 @@ const DestinationDetailsPage = async ({ params }) => {
             className="h-full w-full object-cover"
           />
 
-          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+          <div className="absolute inset-0 bg-linear-to-t from-black/80 via-black/20 to-transparent" />
 
           <div className="absolute left-5 top-5 sm:left-8 sm:top-8">
             <span className="rounded-full border border-white/30 bg-white/15 px-4 py-2 text-sm font-medium text-white backdrop-blur-lg">

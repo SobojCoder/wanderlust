@@ -42,20 +42,17 @@ export default function AddDestinationPage() {
     const token = await getTokenFromClient();
 
     const res = await fetch("http://localhost:5000/Add-destination", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json",
-            authorization: `Bearer ${token}`
-        },
-        body: JSON.stringify(form)
-    })
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify(form),
+    });
 
-    const result =await res.json()
-    console.log(data)
-    
+    const result = await res.json();
+    console.log(result);
   };
-
-
 
   return (
     <main className="min-h-screen bg-background px-6 py-12">
@@ -179,8 +176,6 @@ export default function AddDestinationPage() {
               />
             </div>
           </div>
-
-    
 
           {/* Actions */}
           <div className="mt-8 flex justify-end gap-3">

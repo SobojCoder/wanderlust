@@ -2,7 +2,6 @@
 import { IDestinations } from "@/app/destinations/page";
 import { authClient } from "@/lib/auth-client";
 import { ArrowUpRight, CheckCircle2, ShieldCheck } from "lucide-react";
-import Link from "next/link";
 import React from "react";
 import { Button } from "../ui/button";
 
@@ -10,9 +9,11 @@ const BookingCard = ({ destination }: { destination: IDestinations }) => {
   const { data: session } = authClient.useSession();
   const user = session?.user;
 
-  const handleBooking = async (e) => {
+  const handleBooking = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const departureDate = e.target.departureDate.value;
+    const departureDate = (
+      e.currentTarget.elements.namedItem("departureDate") as HTMLInputElement
+    ).value;
 
     const data = {
       userName: user?.name,

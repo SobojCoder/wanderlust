@@ -1,22 +1,12 @@
 
+import { IDestinations } from "@/type/destinationsType";
 import { MapPin, CalendarDays, Clock3, ArrowUpRight } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
-export interface Root {
-  _id: string;
-  name: string;
-  country: string;
-  category: string;
-  price: string;
-  duration: string;
-  departureDate: string;
-  imageUrl: string;
-  description: string;
-}
 
 interface DestinationCardProps {
-  destination: Root;
+  destination: IDestinations;
 }
 
 export default function DestinationCard({
@@ -35,7 +25,7 @@ export default function DestinationCard({
         />
 
         {/* Image overlay */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/10" />
+        <div className="absolute inset-0 bg-linear-to-t from-black/60 via-transparent to-black/10" />
 
         {/* Category */}
         <span className="absolute left-4 top-4 rounded-full border border-white/30 bg-white/90 px-3 py-1.5 text-xs font-semibold text-gray-800 backdrop-blur-md">

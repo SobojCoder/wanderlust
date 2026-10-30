@@ -1,5 +1,6 @@
 import UserTravelBookingCard from "@/components/bookingCard/UserTravelBookingCard";
 import { auth } from "@/lib/auth";
+import { IBooking } from "@/type/bookingType";
 import { headers } from "next/headers";
 
 const MyBookingPage = async () => {
@@ -41,7 +42,7 @@ const MyBookingPage = async () => {
         {/* Booking cards */}
          <div className="space-y-6">
 
-          {bookings.map((booking) => (
+          {bookings.map((booking: IBooking) => (
             <UserTravelBookingCard booking={booking} key={booking._id} />
           ))}
           </div>
