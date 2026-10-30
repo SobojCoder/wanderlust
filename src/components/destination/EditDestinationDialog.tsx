@@ -26,6 +26,7 @@ import {
 } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
 import { IDestinations } from "@/app/destinations/page";
+import { getTokenFromClient } from "@/lib/getTokenFromClient";
 
 const categories = ["Beach", "Mountain", "City", "Adventure", "Cultural"];
 
@@ -49,10 +50,14 @@ const EditDestinationDialog = ({ destination }: { destination: IDestinations }) 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const {_id, ...updatedData} = form;
-    const res = await fetch(`http://localhost:5000/destination/${destination._id}`, {
+
+
+    const token = await getTokenFromClient()
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/destination/${destination._id}`, {
         method: "PATCH",
         headers: {
             "Content-Type": "application/json",
+            authorization: `Bearer ${token}`
         },
         body: JSON.stringify(updatedData)
     })

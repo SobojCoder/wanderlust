@@ -19,7 +19,7 @@ import ProfileSettings from "@/components/profile/ProfileSettings";
 
 async function getBookings(email: string): Promise<IBooking[]> {
   try {
-    const res = await fetch(`http://localhost:5000/my-booking/${email}`);
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/my-booking/${email}`);
     if (!res.ok) return [];
     const data = await res.json();
     return Array.isArray(data) ? data : [];

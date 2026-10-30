@@ -165,7 +165,7 @@ const Featured = async () => {
   let destinations: IDestinations[] = FALLBACK_DESTINATIONS;
 
   try {
-    const res = await fetch("http://localhost:5000/destinations");
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/destinations`);
     const data = await res.json();
     destinations = data.slice(0, 8);
     if (res.ok) {

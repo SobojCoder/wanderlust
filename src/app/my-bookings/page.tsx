@@ -1,5 +1,6 @@
 import UserTravelBookingCard from "@/components/bookingCard/UserTravelBookingCard";
 import { auth } from "@/lib/auth";
+import { getTokenFromServer } from "@/lib/getTokenFromSever";
 import { IBooking } from "@/type/bookingType";
 import { headers } from "next/headers";
 
@@ -8,8 +9,12 @@ const MyBookingPage = async () => {
     headers: await headers(),
   });
   const user = session?.user;
-
-  const res = await fetch(`http://localhost:5000/my-booking/${user?.email}`);
+  const token = await getTokenFromServer()
+  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/my-booking/${user?.email}`,{
+    headers: {
+      authorization: `Bearer ${token}`
+    }
+  });
   const bookings = await res.json();
 
   return (

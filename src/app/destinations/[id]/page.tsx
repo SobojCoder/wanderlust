@@ -5,7 +5,7 @@ import EditDestinationDialog from "@/components/destination/EditDestinationDialo
 import DeleteDestinationDialog from "@/components/destination/DeleteDestinationDialog";
 import BookingCard from "@/components/bookingCard/BookingCard";
 import { notFound } from "next/navigation";
-import getTokenFromSever from "@/lib/getTokenFromSever";
+import { getTokenFromServer } from "@/lib/getTokenFromSever";
 
 export interface Root {
   _id: string;
@@ -26,9 +26,9 @@ const DestinationDetailsPage = async ({
 }) => {
   const { id } = await params;
 
-  const token = await getTokenFromSever();
+  const token = await getTokenFromServer();
 
-  const res = await fetch(`http://localhost:5000/destination/${id}`, {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/destination/${id}`, {
     headers: {
       authorization: `Bearer ${token}`,
     },
