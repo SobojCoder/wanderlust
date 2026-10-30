@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Josefin_Sans, Playfair_Display } from "next/font/google";
 import "./globals.css";
 import { Navbar } from "@/components/navbar";
-import { Cta } from "@/components/cta";
+import { Cta } from "@/components/homepage/cta";
 import { Footer } from "@/components/footer";
 
 const josefinSans = Josefin_Sans({

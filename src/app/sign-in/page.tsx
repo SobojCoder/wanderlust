@@ -8,7 +8,7 @@ import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { GoogleIcon } from "@/components/google-icon";
+import { GoogleIcon } from "@/components/homepage/google-icon";
 import { redirect } from "next/navigation";
 import { authClient } from "@/lib/auth-client";
 

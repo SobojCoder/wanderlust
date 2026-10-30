@@ -1,8 +1,8 @@
 import Link from "next/link";
 import { ArrowLeft, MapPin, CalendarDays, Clock3, Tag } from "lucide-react";
 import Image from "next/image";
-import EditDestinationDialog from "@/components/EditDestinationDialog";
-import DeleteDestinationDialog from "@/components/DeleteDestinationDialog";
+import EditDestinationDialog from "@/components/destination/EditDestinationDialog";
+import DeleteDestinationDialog from "@/components/destination/DeleteDestinationDialog";
 import BookingCard from "@/components/bookingCard/BookingCard";
 import { notFound } from "next/navigation";
 import getTokenFromSever from "@/lib/getTokenFromSever";

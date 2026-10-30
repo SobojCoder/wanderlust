@@ -1,4 +1,4 @@
-import DestinationCard from "@/components/destinationCard"
+import DestinationCard from "@/components/destination/destinationCard"
 
 export interface IDestinations {
   _id: string
